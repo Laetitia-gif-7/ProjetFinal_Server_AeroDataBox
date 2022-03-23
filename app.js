@@ -47,15 +47,16 @@ app.get('/flights', (req, res) =>{
 
 })
 
-app.get('/flights/:number', (req, res) =>{
+app.get("/flights/:number", (req, res) =>{
 
     var number = req.params.number;
 
     Flight.find({})
-    .then((flights)=>{
-        let flightByNumber= flights.filter(function(flight){
-            return flight.number = number
+    
+        let flightByNumber= flights.filter(function(f){
+            return f.number == number;
         })
+       
         return res.status(200).json({flightByNumber})
     }) 
     .catch((err)=>{
@@ -63,4 +64,4 @@ app.get('/flights/:number', (req, res) =>{
     })
 
 }) 
-        
+
